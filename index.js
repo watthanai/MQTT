@@ -1,13 +1,41 @@
-var mqtt    = require('mqtt');
-var client  = mqtt.connect('ws://YOUR-APP-INSERT-HERE.herokuapp.com');
+// var http = require('http'),
+//     httpServ = http.createServer(),
+//     mosca = require('mosca'),
+//     mqttServ = new mosca.Server({});
 
-client.on('connect', function () {
-  client.subscribe('presence');
-  client.publish('presence', 'Hello mqtt');
+// mqttServ.attachHttpServer(httpServ);
+
+// httpServ.listen(process.env.PORT || 8080,()=>console.log("Server is running"));
+
+var mosca = require('mosca');
+
+var ascoltatore = {
+  //using ascoltatore
+  type: 'mongo',
+  url: 'mongodb://localhost:27017/mqtt',
+  pubsubCollection: 'ascoltatori',
+  mongo: {}
+};
+
+var settings = {
+  port: 1883,
+  backend: ascoltatore
+};
+
+var server = new mosca.Server(settings);
+
+server.on('clientConnected', function(client) {
+    console.log('client connected', client.id);
 });
 
-client.on('message', function (topic, message) {
-  // message is Buffer
-  console.log(message.toString());
-  client.end();
+// fired when a message is received
+server.on('published', function(packet, client) {
+  console.log('Published', packet.payload);
 });
+
+server.on('ready', setup);
+
+// fired when the mqtt server is ready
+function setup() {
+  console.log('Mosca server is up and running');
+}
