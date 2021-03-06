@@ -12,8 +12,8 @@ var mosca = require('mosca');
 var ascoltatore = {
   //using ascoltatore
   type: 'mongo',
-  url: 'mongodb://localhost:27017/mqtt',
-  pubsubCollection: 'ascoltatori',
+  url: process.env.MONGODB_URI,
+  pubsubCollection: 'Broker',
   mongo: {}
 };
 
