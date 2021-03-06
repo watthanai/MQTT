@@ -13,8 +13,6 @@
   "dependencies": {
     "ascoltatori": "^4.3.0",
     "http": "0.0.1-security",
-    "mongodb": "^3.6.4",
-    "mongoose": "^5.11.19",
     "mosca": "^2.8.3",
     "mqtt": "^4.2.6"
   }
