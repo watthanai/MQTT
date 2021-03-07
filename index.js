@@ -2,8 +2,10 @@
 //     httpServ = http.createServer(),
 //     mosca = require('mosca'),
 //     mqttServ = new mosca.Server({});
+var express = require('express');
 
 // mqttServ.attachHttpServer(httpServ); 
+var app = express();
 
 // httpServ.listen(process.env.PORT || 1883,()=>console.log("Server is running"));
 require('dotenv').config()
@@ -15,14 +17,20 @@ var http = require('http');
 //   pubsubCollection: 'Broker',
 //   mongo: {}
 // };
-var settings = {
+//var settings = {
    
 //   port: process.env.PORT || 1883,
-     port: parseInt(process.env.PORT),
-     http : {port:parseInt(process.env.PORT_HTTP)}
-};
-
-var server = new mosca.Server(settings);
+ //    port: parseInt(process.env.PORT),
+ //    http : {port:parseInt(process.env.PORT_HTTP)}
+//};
+var server = new mosca.Server({
+    persistence: {
+        factory: mosca.persistence.Memory
+    }
+}, function() {
+    server.attachHttpServer(app);
+});
+//var server = new mosca.Server(settings);
 
 server.on('clientConnected', function(client) {
     console.log('client connected', client.id);
