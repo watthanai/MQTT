@@ -6,7 +6,7 @@
 // mqttServ.attachHttpServer(httpServ); 
 
 // httpServ.listen(process.env.PORT || 1883,()=>console.log("Server is running"));
-
+require('dotenv').config()
 var mosca = require('mosca');
 
 // var ascoltatore = {
@@ -15,11 +15,10 @@ var mosca = require('mosca');
 //   pubsubCollection: 'Broker',
 //   mongo: {}
 // };
-
 var settings = {
    
 //   port: process.env.PORT || 1883,
-     port: Number(process.env.PORT || 1883)
+     port: parseInt(process.env.PORT)
      
 };
 
