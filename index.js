@@ -19,10 +19,6 @@ var settings = {
    
 //   port: process.env.PORT || 1883,
      port: parseInt(process.env.PORT)
-     http : {
-
-     }
-     
 };
 
 var server = new mosca.Server(settings);
