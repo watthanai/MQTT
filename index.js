@@ -23,10 +23,9 @@ var http = require('http');
  //    port: parseInt(process.env.PORT),
  //    http : {port:parseInt(process.env.PORT_HTTP)}
 //};
+console.log("port: ",process.env.PORT)
 var server = new mosca.Server({
-    persistence: {
-        factory: mosca.persistence.Memory
-    }
+    port: process.env.PORT
 }, function() {
     server.attachHttpServer(app);
 });
