@@ -18,7 +18,8 @@ var http = require('http');
 var settings = {
    
 //   port: process.env.PORT || 1883,
-     port: parseInt(process.env.PORT)
+     port: parseInt(process.env.PORT),
+     http : {port:parseInt(process.env.PORT_HTTP)}
 };
 
 var server = new mosca.Server(settings);
