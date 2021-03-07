@@ -49,18 +49,20 @@ var app = express();
 var server = http.createServer(app);
 
 var pubsubsettings = {
-    type: 'mongo',
-    url: process.env.MONGOLAB_URI ||  'mongodb://localhost:27017/app',
-    pubsubCollection: 'mqtt',
-    mongo: {}
+    // type: 'mongo',
+    // url: process.env.MONGOLAB_URI ||  'mongodb://localhost:27017/app',
+    // pubsubCollection: 'mqtt',
+    // mongo: {}
+    port: 1883 || Number(process.env.PORT)
 };
 
 var server = new mosca.Server({
-    backend: pubsubsettings,
-    persistence: {
-        factory: mosca.persistence.Mongo,
-        url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/app'
-    }
+    backend: pubsubsettings
+    // persistence: {
+    //     factory: mosca.persistence.Mongo,
+    //     // url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/app'
+    //     // Number(process.env.PORT)
+    // }
 }, function() {
     server.attachHttpServer(app);
 });
