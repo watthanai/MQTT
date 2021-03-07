@@ -8,7 +8,7 @@
 // httpServ.listen(process.env.PORT || 1883,()=>console.log("Server is running"));
 require('dotenv').config()
 var mosca = require('mosca');
-
+var http = require('http');
 // var ascoltatore = {
 //   //using ascoltatore
 //   type: 'mongo',
@@ -19,6 +19,9 @@ var settings = {
    
 //   port: process.env.PORT || 1883,
      port: parseInt(process.env.PORT)
+     http : {
+
+     }
      
 };
 
