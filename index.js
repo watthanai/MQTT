@@ -19,7 +19,7 @@
 // var settings = {
    
 // //   port: process.env.PORT || 1883,
-//      port: app.listen(process.env.PORT || 1883)
+//      port: (process.env.PORT || 1883)
 // };
 
 // var server = new mosca.Server(settings);
@@ -49,20 +49,18 @@ var app = express();
 var server = http.createServer(app);
 
 var pubsubsettings = {
-    // type: 'mongo',
-    // url: process.env.MONGOLAB_URI ||  'mongodb://localhost:27017/app',
-    // pubsubCollection: 'mqtt',
-    // mongo: {}
-    port: 1883 || Number(process.env.PORT)
+    type: 'mongo',
+    url: process.env.MONGOLAB_URI ||   'mongodb://localhost:27017/app',
+    pubsubCollection: 'mqtt',
+    mongo: {}
 };
 
 var server = new mosca.Server({
-    backend: pubsubsettings
-    // persistence: {
-    //     factory: mosca.persistence.Mongo,
-    //     // url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/app'
-    //     // Number(process.env.PORT)
-    // }
+    backend: pubsubsettings,
+    persistence: {
+        factory: mosca.persistence.Mongo,
+        url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/app'
+    }
 }, function() {
     server.attachHttpServer(app);
 });
@@ -70,7 +68,6 @@ var server = new mosca.Server({
 server.on('ready', function() {
     console.log('Mosca is running');
 });
-
 
 
 
