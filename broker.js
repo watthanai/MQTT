@@ -33,10 +33,14 @@ var mosca = require('mosca');
 
 // var settings=process.env.PORT || 80 || 1883 ;
 
-const settings = process.env.PORT || 80;
+// const settings = process.env.PORT || 80;
+
 
 var broker = new mosca.Server(settings);
-
+var settings = {
+    port: process.env.PORT||1883
+ 
+  };
 broker.on('clientConnected', function(client) {
     console.log('client connected', client.id);
 });
