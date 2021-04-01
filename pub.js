@@ -1,8 +1,8 @@
 var mqtt =require('mqtt')
- var client = mqtt.connect('mqtt://localhost:1883')
-// var client = mqtt.connect('mqtt://localhost:80')
+//  var client = mqtt.connect('mqtt://localhost:1883')
+ var client = mqtt.connect('ws://tns-mqtt.herokuapp.com')
 var topic = 'Helloworld'
-var message = "Hello fluke"
+var message = "Don't give up"
 
 client.on('connect',()=>{
     setInterval(()=>{
