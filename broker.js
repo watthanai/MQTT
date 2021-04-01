@@ -23,16 +23,32 @@
 // httpServ.listen(process.env.PORT || 8080);
 
 
-var mosca = require('mosca')
-var settings = process.env.PORT || 8080
-var broker = new mosca.Server(settings)
-broker.on('ready',()=>{
-    console.log('Broker is ready!')
-})
+var mosca = require('mosca');
 
-broker.on('published',(package)=>{
-    console.log(package.payload.toString())
-})
+
+var settings = {
+  port: 1883,
+
+};
+
+var broker = new mosca.Server(settings);
+
+broker.on('clientConnected', function(client) {
+    console.log('client connected', client.id);
+});
+
+// fired when a message is received
+broker.on('published', function(packet, client) {
+  console.log('Published', packet.payload);
+});
+
+broker.on('ready', setup);
+
+// fired when the mqtt server is ready
+function setup() {
+  console.log('Mosca server is up and running');
+}
+
 
   
 
