@@ -31,8 +31,9 @@ var mosca = require('mosca');
 
 // };
 
-var settings=process.env.PORT || 80 || 1883 ;
+// var settings=process.env.PORT || 80 || 1883 ;
 
+const settings = process.env.PORT || 80;
 
 var broker = new mosca.Server(settings);
 
