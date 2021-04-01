@@ -13,17 +13,17 @@
 
 
   
-// var http = require('http'),
-//     httpServ = http.createServer(),
-//     mosca = require('mosca'),
-//     mqttServ = new mosca.Server({});
+var http = require('http'),
+    httpServ = http.createServer(),
+    mosca = require('mosca'),
+    mqttServ = new mosca.Server({});
 
-// mqttServ.attachHttpServer(httpServ);
+mqttServ.attachHttpServer(httpServ);
 
-// httpServ.listen(process.env.PORT || 8080);
+httpServ.listen(process.env.PORT || 8080);
 
 
-var mosca = require('mosca');
+// var mosca = require('mosca');
 
 
 // var settings = {
@@ -36,26 +36,26 @@ var mosca = require('mosca');
 // const settings = process.env.PORT || 80;
 
 
-var broker = new mosca.Server(settings);
-var settings = {
-    port: process.env.PORT||1883
+// var broker = new mosca.Server(settings);
+// var settings = {
+//     port: process.env.PORT||1883
  
-  };
-broker.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
-});
+//   };
+// broker.on('clientConnected', function(client) {
+//     console.log('client connected', client.id);
+// });
 
-// fired when a message is received
-broker.on('published', function(packet, client) {
-  console.log('Published', packet.payload);
-});
+// // fired when a message is received
+// broker.on('published', function(packet, client) {
+//   console.log('Published', packet.payload);
+// });
 
-broker.on('ready', setup);
+// broker.on('ready', setup);
 
-// fired when the mqtt server is ready
-function setup() {
-  console.log('Mosca server is up and running');
-}
+// // fired when the mqtt server is ready
+// function setup() {
+//   console.log('Mosca server is up and running');
+// }
 
 
   
