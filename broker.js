@@ -24,11 +24,13 @@
 
 
 var mosca = require('mosca');
-var broker = new mosca.Server(settings);
+
 var settings = {
-    port: process.env.PORT||1883
+    //  port: process.env.PORT||1883
+     port:1883
  
   };
+  var broker = new mosca.Server(settings);
 broker.on('clientConnected', function(client) {
     console.log('client connected', client.id);
 });
