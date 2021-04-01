@@ -1,20 +1,24 @@
 {
-  "name": "mqtt",
-  "version": "4.2.6",
+  "name": "MQTT",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon broker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watthanai/MQTT.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/watthanai/MQTT/issues"
+  },
+  "homepage": "https://github.com/watthanai/MQTT#readme",
   "dependencies": {
-    "ascoltatori": "^4.3.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "http": "0.0.1-security",
     "mosca": "^2.8.3",
     "mqtt": "^4.2.6"
   }
