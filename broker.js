@@ -25,24 +25,20 @@
 
 var mosca = require('mosca');
 var http = require('http');
-var httpServ = http.createServer();
-
-// var settings = {
-//     //  port: process.env.PORT||1883
-//      port:1883
- 
-//   };
+var httpServ = http.createServer(function(req, res){
+  res.write('Hello World!'); //write a response to the client
+  res.end(); //end the response
+}).listen(process.env.PORT || 8080);
 var broker = new mosca.Server({});
 broker.attachHttpServer(httpServ);
-httpServ.listen(process.env.PORT || 8080);
-// httpServ.listen(8080);
+
 broker.on('clientConnected', function(client) {
 console.log('client connected', client.id);
 });
 
 // fired when a message is received
 broker.on('published', function(packet, client) {
-  console.log('Published', packet.payload);
+console.log('Published', packet.payload);
 });
 
 broker.on('ready', setup);
@@ -51,6 +47,8 @@ broker.on('ready', setup);
 function setup() {
   console.log('Mosca server is up and running');
 }
+
+
 
 
   
