@@ -26,10 +26,13 @@
 var mosca = require('mosca');
 
 
-var settings = {
-  port: 1883,
+// var settings = {
+//   port: 1883,
 
-};
+// };
+
+var settings=process.env.PORT || 80 || 1883 ;
+
 
 var broker = new mosca.Server(settings);
 
