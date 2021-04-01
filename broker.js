@@ -13,11 +13,28 @@
 
 
   
-var http = require('http'),
-    httpServ = http.createServer(),
-    mosca = require('mosca'),
-    mqttServ = new mosca.Server({});
+// var http = require('http'),
+//     httpServ = http.createServer(),
+//     mosca = require('mosca'),
+//     mqttServ = new mosca.Server({});
 
-mqttServ.attachHttpServer(httpServ);
+// mqttServ.attachHttpServer(httpServ);
 
-httpServ.listen(process.env.PORT || 8080);
+// httpServ.listen(process.env.PORT || 8080);
+
+
+var mosca = require('mosca')
+var settings = process.env.PORT || 8080
+var broker = new mosca.Server(settings)
+broker.on('ready',()=>{
+    console.log('Broker is ready!')
+})
+
+broker.on('published',(package)=>{
+    console.log(package.payload.toString())
+})
+
+  
+
+
+
